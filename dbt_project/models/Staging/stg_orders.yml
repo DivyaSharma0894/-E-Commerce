@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: "Staging model for E-commerce orders."
+    columns:
+      - name: hash_order_id
+        tests:
+          - unique
+          - not_null
+      - name: order_amount
+        description: "The total value of the order."
+      - name: order_status
+        description: "Status of the order (e.g., shipped, delivered)."
+        tests:
+          - accepted_values:
+              values: ['shipped', 'delivered', 'placed', 'returned']

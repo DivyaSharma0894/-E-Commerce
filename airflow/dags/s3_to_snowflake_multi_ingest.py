@@ -13,9 +13,9 @@ SNOWFLAKE_CONN = "snowflake_default"
 
 
 DATASETS = {
-    "customers": "ECOMMERCE_RAW.STAGE.RAW_CUSTOMERS",
-    "orders": "ECOMMERCE_RAW.STAGE.RAW_ORDERS",
-    "inventory": "ECOMMERCE_RAW.STAGE.RAW_INVENTORY"
+    "customers": "ECOMMERCE_RAW.Landing.RAW_CUSTOMERS",
+    "orders": "ECOMMERCE_RAW.Landing.RAW_ORDERS",
+    "inventory": "ECOMMERCE_RAW.Landing.RAW_INVENTORY"
 }
 
 
@@ -26,7 +26,7 @@ def run_snowflake_copy(table, folder, **context):
     
     sql = f"""
         COPY INTO {table} (json_data)
-        FROM @ECOMMERCE_RAW.STAGE.MY_S3_STAGE/{folder}/{execution_date}/
+        FROM @ECOMMERCE_RAW.Landing.MY_S3_STAGE/{folder}/{execution_date}/
         FILE_FORMAT = (TYPE = 'JSON' STRIP_OUTER_ARRAY = TRUE)
         ON_ERROR = 'CONTINUE';
     """

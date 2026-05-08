@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: stg_inventory
+    description: "Staging model for product inventory, parsed from JSON_DATA."
+    columns:
+      - name: hash_product_id
+        description: "Primary key: Hashed version of product_id."
+        tests:
+          - unique
+          - not_null
+      - name: stock_count
+        description: "Current quantity in stock."
+        tests:
+          - not_null
+      - name: updated_at_tz
+        description: "The time the stock level was last updated in the source system."
