@@ -4,8 +4,7 @@ with raw_source as (
 
 final as (
     select
-        -- Accessing JSON_DATA directly using colon syntax
-        -- We use double quotes inside the colon to handle lowercase keys
+       
         {{ dbt_utils.generate_surrogate_key(['JSON_DATA:"customer_id"::string']) }} as hash_customer_id,
         
         try_cast(JSON_DATA:"customer_id"::string as varchar) as customer_id,

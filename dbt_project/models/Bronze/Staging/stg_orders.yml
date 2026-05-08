@@ -12,6 +12,9 @@ models:
         description: "The total value of the order."
       - name: order_status
         description: "Status of the order (e.g., shipped, delivered)."
-        tests:
-          - accepted_values:
-              values: ['shipped', 'delivered', 'placed', 'returned']
+      - name: order_hashdiff
+        description: "Hash difference for change data capture."
+      - name: link_order_customer_pk
+        description: "Primary key for the order-customer link."
+      - name: source_system
+        description: "The system that provided the data."

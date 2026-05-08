@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: link_order_customer
+    description: "Link capturing the relationship between an Order and a Customer."
+    columns:
+      - name: link_order_customer_pk
+        description: "Primary Key: MD5 hash of the order and customer ID combination."
+        tests:
+          - unique
+          - not_null
+      - name: hash_order_id
+        description: "Foreign Key referencing hub_order."
+        tests:
+          - not_null
+      - name: hash_customer_id
+        description: "Foreign Key referencing hub_customer."
+        tests:
+          - not_null
