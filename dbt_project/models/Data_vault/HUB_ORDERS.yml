@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: hub_orders
+    description: "Hub containing unique Order business keys."
+    columns:
+      - name: hash_order_id
+        description: "Primary Key: MD5 hash of the Order ID."
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: "The natural business key for the order."
+        tests:
+          - not_null
+      - name: ingested_at
+        tests:
+          - not_null
