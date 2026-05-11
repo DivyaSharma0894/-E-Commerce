@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: raw
+    database: ECOMMERCE_RAW
+    schema: LANDING
+    tables:
+      - name: orders
+        identifier: RAW_ORDERS
+      - name: customers
+        identifier: RAW_CUSTOMERS
+      - name: inventory
+        identifier: RAW_INVENTORY
