@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "Staging model for BigTime customers, parsed from raw JSON variant data."
+    columns:
+      - name: hash_customer_id
+        description: "Primary key: MD5 hash of the natural customer_id."
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: "The raw UUID identifier for the customer."
+        tests:
+          - not_null
+
+      - name: email
+        description: "Customer email address used for login and communication."
+        tests:
+          - not_null
+          
+
+      - name: customer_name
+        description: "Full name of the customer."
+
+      - name: created_at_tz
+        description: "The timestamp when the customer record was first created."
+
+      - name: ingested_at
+        description: "Metadata: When this record was loaded into the Snowflake raw table."
+        tests:
+          - not_null
