@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: hub_customer
+    description: "Hub containing unique Customer business keys."
+    columns:
+      - name: hash_customer_id
+        description: "Primary Key: MD5 hash of the Customer ID."
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "The natural business key for the customer."
+        tests:
+          - not_null
+      - name: ingested_at
+        tests:
+          - not_null

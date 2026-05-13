@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: mart_inventory_turnover
+    description: "Materialized table with inventory turnover KPIs for business analysis"
+    columns:
+      - name: turnover_category
+        description: "Category of inventory turnover (High/Medium/Low)"
+      - name: product_count
+        description: "Number of products in this turnover category"
+      - name: total_inventory_value
+        description: "Total value of inventory in this category"
+      - name: avg_stock_level
+        description: "Average stock level across products in this category"
+      - name: total_stock_units
+        description: "Total units in stock across products in this category"

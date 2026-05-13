@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: mart_daily_revenue
+    description: "Materialized table with daily revenue KPIs for business analysis"
+    columns:
+      - name: order_date
+        description: "Date of the orders"
+      - name: total_revenue
+        description: "Total revenue for the day"
+      - name: order_count
+        description: "Number of orders placed on the day"
+      - name: avg_order_value
+        description: "Average value of orders on the day"
+      - name: last_updated
+        description: "Timestamp of the last update"
