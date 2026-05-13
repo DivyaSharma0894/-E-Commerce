@@ -28,6 +28,8 @@ scd_customer as (
         load_dts,
         source_system,
         version_number,
+
+        -- Map satellite load timestamp to SCD valid period.
         load_dts as valid_from,
         coalesce(
             lead(load_dts) over(
@@ -36,6 +38,7 @@ scd_customer as (
             ),
             to_timestamp_ntz('9999-12-31 23:59:59')
         ) as valid_to,
+
         case
             when lead(load_dts) over(
                 partition by hash_customer_id
@@ -48,3 +51,4 @@ scd_customer as (
 
 select * from scd_customer
 order by hash_customer_id, valid_from desc
+
