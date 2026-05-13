@@ -17,11 +17,11 @@ dag = DbtDag(
         target_name="dev",
         profile_mapping=SnowflakeUserPasswordProfileMapping(
             conn_id="snowflake_default", # Ensure this ID exists in Airflow Connections
-            profile_args={"database": "COMMERCE_DB", "schema": "PUBLIC"},
+            profile_args={"database": "ECOMMERCE_RAW", "schema": "STAGE"},
         ),
     ),
     operator_args={
         "install_deps": True, # Runs 'dbt deps' for you
     },
-    catchup=False,
+
 )

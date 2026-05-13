@@ -13,7 +13,7 @@ final as (
         
         -- Use integer for stock levels
         try_cast(JSON_DATA:"stock"::string as integer) as stock_count,
-        
+        try_cast(JSON_DATA:"unit_cost"::string as numeric(10, 2)) as unit_cost,
         -- Convert ISO timestamp to timestamp with timezone
         try_cast(JSON_DATA:"updated_at"::string as timestamp_tz) as updated_at_tz,
         
