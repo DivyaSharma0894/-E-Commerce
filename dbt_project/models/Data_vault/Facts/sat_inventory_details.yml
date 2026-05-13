@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: sat_inventory_details
+    description: "Satellite containing descriptive state for inventory (Append-only CDC)."
+    columns:
+      - name: hash_product_id
+        description: "Foreign Key referencing hub_inventory."
+        tests:
+          - not_null
+      - name: inventory_hashdiff
+        description: "MD5 hash of all descriptive fields to track changes."
+        tests:
+          - not_null
+      - name: product_name
+        description: "The name of the product."
+      - name: stock_count
+        description: "Current stock level of the product."
+      - name: unit_cost
+        description: "Cost per unit of the product."
+      - name: updated_at_tz
+        description: "Timestamp when inventory was last updated."
+      - name: ingested_at
+        description: "Load Date Timestamp used to identify the latest record."
+        tests:
+          - not_null

@@ -86,6 +86,7 @@ def s3_data_generator():
                 "product_id": fake.uuid4(),
                 "product_name": fake.word(),
                 "stock": random.randint(0, 100),
+                "unit_cost": round(random.uniform(5, 500), 2),
                 "updated_at": get_late_timestamp(ts)
             }
 

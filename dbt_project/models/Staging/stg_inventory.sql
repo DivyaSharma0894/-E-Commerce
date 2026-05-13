@@ -13,12 +13,19 @@ final as (
         
         -- Use integer for stock levels
         try_cast(JSON_DATA:"stock"::string as integer) as stock_count,
+        try_cast(JSON_DATA:"unit_cost"::string as numeric(10, 2)) as unit_cost,
         
         -- Convert ISO timestamp to timestamp with timezone
         try_cast(JSON_DATA:"updated_at"::string as timestamp_tz) as updated_at_tz,
         
+        -- NEW: HashDiff (Required for sat_inventory_details CDC)
+        {{ dbt_utils.generate_surrogate_key(['JSON_DATA:"product_name"::string', 'JSON_DATA:"stock"::string', 'JSON_DATA:"unit_cost"::string', 'JSON_DATA:"updated_at"::string']) }} as inventory_hashdiff,
+        
         -- 3. Capture metadata column (Snowflake TIMESTAMP_NTZ)
-        ingestion_time as ingested_at
+        ingestion_time as ingested_at,
+        
+        -- NEW: Record Source (Required for all Vault models)
+        'SNOWFLAKE_ECOM' as source_system
 
     from raw_source
 )
