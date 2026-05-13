@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: dim_customer
+    description: "SCD Type 2 Customer dimension built from Raw Vault hub and satellite models."
+    columns:
+      - name: hash_customer_id
+        description: "Surrogate hash key for the customer business key."
+        tests:
+          - not_null
+      - name: customer_id
+        description: "Natural customer business key from the raw source."
+        tests:
+          - not_null
+      - name: customer_name
+        description: "Customer name as captured in the customer satellite."
+      - name: email
+        description: "Customer email as captured in the customer satellite."
+      - name: created_at_tz
+        description: "Customer creation timestamp from source."
+      - name: load_dts
+        description: "Satellite load timestamp, mapped to SCD valid_from."
+      - name: valid_from
+        description: "Effective start date/time for this SCD2 row."
+      - name: valid_to
+        description: "Effective end date/time for this SCD2 row (open-ended for current records)."
+      - name: is_current
+        description: "Flag indicating whether the record is the current active version."
+      - name: version_number
+        description: "Sequential version of the customer record over time."

@@ -13,8 +13,14 @@ final as (
         try_cast(JSON_DATA:"email"::string as varchar) as email,
         try_cast(JSON_DATA:"created_at"::string as timestamp_tz) as created_at_tz,
         
+        -- NEW: HashDiff (Required for sat_customer_details CDC)
+        {{ dbt_utils.generate_surrogate_key(['JSON_DATA:"name"::string', 'JSON_DATA:"email"::string', 'JSON_DATA:"created_at"::string']) }} as customer_hashdiff,
+        
         -- Metadata column
-        ingestion_time as ingested_at
+        ingestion_time as ingested_at,
+        
+        -- NEW: Record Source (Required for all Vault models)
+        'SNOWFLAKE_ECOM' as source_system
 
     from raw_source
 )

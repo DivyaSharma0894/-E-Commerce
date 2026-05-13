@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: hub_inventory
+    description: "Hub containing unique Product/Inventory business keys."
+    columns:
+      - name: hash_product_id
+        description: "Primary Key: MD5 hash of the Product ID."
+        tests:
+          - unique
+          - not_null
+      - name: product_id
+        description: "The natural business key for the product."
+        tests:
+          - not_null
+      - name: ingested_at
+        tests:
+          - not_null
